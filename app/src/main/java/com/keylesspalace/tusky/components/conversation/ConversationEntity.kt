@@ -25,6 +25,7 @@ import com.keylesspalace.tusky.entity.Status
 @Entity(primaryKeys = ["id","accountId"])
 @TypeConverters(Converters::class)
 data class ConversationEntity(
+        val timestamp: Long,
         val accountId: Long,
         val id: String,
         val accounts: List<Account>,
@@ -32,4 +33,4 @@ data class ConversationEntity(
         val unread: Boolean
 )
 
-fun Conversation.mapToEntity(accountId: Long)=  ConversationEntity(accountId, id, accounts, lastStatus, unread)
+fun Conversation.mapToEntity(accountId: Long)=  ConversationEntity(lastStatus.createdAt.time, accountId, id, accounts, lastStatus, unread)

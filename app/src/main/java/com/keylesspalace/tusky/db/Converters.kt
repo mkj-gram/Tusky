@@ -16,7 +16,6 @@
 package com.keylesspalace.tusky.db
 
 import android.text.Spanned
-import android.util.Log
 import androidx.room.TypeConverter
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
@@ -71,7 +70,6 @@ class Converters {
 
     @TypeConverter
     fun jsonToStatus(statusJson: String?): Status? {
-        Log.d("JSOND", statusJson)
         return gson.fromJson(statusJson, object : TypeToken<Status>() {}.type)
     }
 
